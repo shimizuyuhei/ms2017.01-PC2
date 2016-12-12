@@ -1,0 +1,5 @@
+﻿  TCPserver.cpp
+c:\hal\4\gp41\program\git\local\ms2017.01-pc2\cleaningtcpserver\cleaningtcpserver\tcpserver.cpp(8): warning C4838: 'int' から 'char' への変換には縮小変換が必要です
+c:\hal\4\gp41\program\git\local\ms2017.01-pc2\cleaningtcpserver\cleaningtcpserver\tcpserver.cpp(8): warning C4309: '初期化中': 定数値が切り捨てられました。
+  CleaningTCPserver.vcxproj -> C:\HAL\4\GP41\program\git\local\ms2017.01-PC2\CleaningTCPserver\Debug\CleaningTCPserver.exe
+  CleaningTCPserver.vcxproj -> C:\HAL\4\GP41\program\git\local\ms2017.01-PC2\CleaningTCPserver\Debug\CleaningTCPserver.pdb (Full PDB)
