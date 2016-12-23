@@ -52,9 +52,6 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -70,9 +67,6 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
     </Reference>
@@ -82,10 +76,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Dust.cs" />
+    <Compile Include="Assets\Scripts\GameMgr.cs" />
     <Compile Include="Assets\Scripts\Hokori.cs" />
     <Compile Include="Assets\Scripts\House.cs" />
     <Compile Include="Assets\Scripts\Particle.cs" />
+    <Compile Include="Assets\Scripts\Ring.cs" />
     <Compile Include="Assets\Scripts\TCP_Signal.cs" />
+    <Compile Include="Assets\Scripts\TitleMgr.cs" />
     <Compile Include="Assets\Scripts\Token.cs" />
     <Compile Include="Assets\Scripts\Util.cs" />
   </ItemGroup>

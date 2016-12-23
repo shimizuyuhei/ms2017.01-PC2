@@ -3,6 +3,7 @@
 #define _INC_TCPSERVER    //すでに読み込まれているという目印をつける
 
 /*インクルード*/
+#include <thread>
 #include "Cleaning.h"
 
 class TCPserver
@@ -10,8 +11,15 @@ class TCPserver
 private:
 
 public:
-	TCPserver(int portNum);
+
+	/*TCP通信サーバ*/
+	TCPserver(int portNum); /*コンストラクタ*/
+	
+	/*Thread*/
+	void WaitConnect();
+	void WaitRead();
 	void Send(char *data);
-	~TCPserver();
+	~TCPserver();	/*デストラクタ*/
 };
+
 #endif    //_INC_TCPSERVER

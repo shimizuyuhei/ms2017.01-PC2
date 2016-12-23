@@ -12,6 +12,8 @@ public class House : Token
     /// 開始
     void Start()
     {
+        GameMgr.Count++;
+
         //Debug.Log("Hello");
         HouseSprite = gameObject.GetComponent<SpriteRenderer>();
 
@@ -20,11 +22,20 @@ public class House : Token
     /// 更新
     void Update()
     {
-
+        if (TCP_Signal.signal == '3')
+        {
+            HitPoints();
+            TCP_Signal.signal = 0;
+        }
     }
 
     /// クリックされた
     public void OnMouseDown()
+    {
+        HitPoints();
+    }
+
+    private void HitPoints()
     {
         if (DeathCnt < 3)
         {
@@ -43,6 +54,9 @@ public class House : Token
             {
                 Particle.Add(X, Y);
             }
+
+            /*生存数を減らす*/
+            GameMgr.Count--;
 
             // 破棄する
             DestroyObj();

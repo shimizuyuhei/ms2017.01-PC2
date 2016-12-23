@@ -20,10 +20,18 @@ public class TCP_Signal : MonoBehaviour
     private StreamReader sr;
     private StreamWriter sw;
 
+    /*リングバッファ設定*/
+    Ring rg;
+
+    public static int signal = 0;
+
     // Use this for initialization
     void Start()
     {
         Debug.Log("TCP");
+
+        /*リングバッファ初期化*/
+        rg = new Ring();
 
         TCP_Thread = new Thread(threadWork);
         TCP_Thread.Start();
@@ -32,7 +40,15 @@ public class TCP_Signal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        int sg;
 
+        sg = rg.GetRingBuff();
+        if (-1 != sg)
+        {
+            Debug.Log(sg.ToString("x"));
+            signal = sg;
+            //Debug.Log(System.Text.Encoding.UTF8.GetString(sg));
+        }
     }
 
     private Boolean deathflg = true;
@@ -49,6 +65,7 @@ public class TCP_Signal : MonoBehaviour
         /*自分のIPアドレス,ポート番号*/
         IPEndPoint ep = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 9876);
 
+
         while (deathflg)
         {
             TcpClient client = new TcpClient();
@@ -64,34 +81,33 @@ public class TCP_Signal : MonoBehaviour
                 sw = new StreamWriter(ns, Encoding.UTF8);   //文字コードを指定して送信
                 sw.AutoFlush = true;    //一行書き込んだら送信する
 
-                Recive();
-
+                    Recive();
             }
             catch (Exception e)
             {
-                Debug.Log(e.Message);   //接続できなかった場合の処理
+                //Debug.Log(e.Message);   //接続できなかった場合の処理
             }
 
-            System.Threading.Thread.Sleep(1000);
+            //System.Threading.Thread.Sleep(1000);
         }
     }
 
     private void Recive()
     {
-        int[] str = new int[255];
+        string str = string.Empty;
         do
         {
-            int ReadCnt = 0;
-            while (0 < sr.Peek())
+            str = sr.ReadLine();
+            if (str == null)
             {
-                str[ReadCnt] = sr.Read();
-                ReadCnt++;
+                break;
             }
-            //txtDisp.Text = str;
-            if(0 < ReadCnt)
+
+            for (int i = 0; i < str.Length; i++)
             {
-                Debug.Log(str[0].ToString("x"));
+                rg.PutRingBuff(str[i]);
             }
+
         } while (deathflg);
     }
 }
